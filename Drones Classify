@@ -1,0 +1,100 @@
+Drone Size Classification
+
+This repository categorizes drones into five size classes based on their approximate dimensions and weight.
+
+Nano Drones
+
+Size: < 10 cm
+Weight: < 50 g
+
+Drone	Manufacturer
+DJI Neo	DJI
+Ryze Tello	Ryze / DJI
+Crazyflie 2.1	Bitcraze
+BETAFPV Meteor65	BETAFPV
+Eachine E010	Eachine
+Mobula6	Happymodel
+NewBeeDrone AcroBee	NewBeeDrone
+
+⸻
+
+Micro Drones
+
+Size: 10–25 cm
+Weight: 50 g – 250 g
+
+Drone	Manufacturer
+DJI Mini 4 Pro	DJI
+DJI Mini 3 Pro	DJI
+DJI Mini 2 SE	DJI
+DJI Mavic Mini	DJI
+Autel EVO Nano+	Autel
+Holy Stone HS720	Holy Stone
+Potensic ATOM SE	Potensic
+Hubsan Zino Mini Pro	Hubsan
+
+⸻
+
+Small Drones
+
+Size: 25–50 cm
+Weight: 250 g – 2 kg
+
+Drone	Manufacturer
+DJI Air 3	DJI
+DJI Air 2S	DJI
+DJI Mavic 3 Classic	DJI
+DJI Mavic 3 Pro	DJI
+Autel EVO Lite+	Autel
+Autel EVO II	Autel
+Skydio 2+	Skydio
+Parrot Anafi	Parrot
+Yuneec Mantis Q	Yuneec
+
+⸻
+
+Medium Drones
+
+Size: 50 cm – 1.5 m
+Weight: 2 kg – 25 kg
+
+Drone	Manufacturer
+DJI Inspire 3	DJI
+DJI Inspire 2	DJI
+DJI Phantom 4 Pro V2	DJI
+DJI Matrice 30	DJI
+DJI Matrice 300 RTK	DJI
+Autel EVO II Pro	Autel
+Yuneec Typhoon H3	Yuneec
+Freefly Alta X	Freefly
+senseFly eBee X (Fixed Wing)	senseFly
+
+⸻
+
+Large Drones
+
+Size: > 1.5 m
+Weight: > 25 kg
+
+Drone	Manufacturer	Category
+DJI Agras T40	DJI	Agricultural
+DJI Agras T10	DJI	Agricultural
+DJI Matrice 350 RTK	DJI	Industrial
+Wingcopter 178	Wingcopter	Delivery
+Zipline Platform 2	Zipline	Delivery
+General Atomics MQ-9 Reaper	General Atomics	Military
+AeroVironment RQ-20 Puma	AeroVironment	Military
+Northrop Grumman MQ-4C	Northrop Grumman	Military
+Elbit Hermes 900	Elbit Systems	Military
+Bayraktar TB2	Baykar	Military
+
+⸻
+
+Size Summary
+
+Class	Size	Weight
+Nano	< 10 cm	< 50 g
+Micro	10–25 cm	50–250 g
+Small	25–50 cm	250 g–2 kg
+Medium	50 cm–1.5 m	2–25 kg
+Large	> 1.5 m	> 25 kg

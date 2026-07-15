@@ -1,0 +1,35 @@
+Great question. You're right to question it — bbox pixel area is a weak proxy for "clearly visible". A large drone far away can have a small bbox, and a nano drone very close can have a large bbox. Area alone doesn't tell you if the drone is actually recognizable.
+Better ideas for "clearly visible" gate
+Here are the real options, ranked by how well they actually measure visibility:
+1. Confidence score from Stage 1 (best simple option)
+YOLO's own confidence score already encodes how "clear" the detection is. If conf < 0.6, the drone is probably blurry, partially occluded, or too small to distinguish. This is better than area because YOLO computes it from the actual image features, not just pixel count.
+pythonif yolo_conf < 0.60:
+    label = "drone (size N/A)"   # not confident enough
+else:
+    → Stage 2
+2. Crop sharpness — Laplacian variance (best quality check)
+After cropping the drone bbox, measure how sharp/blurry that crop actually is. A blurry crop will give Stage 2 garbage input regardless of bbox size. Laplacian variance is a standard, fast blur detector.
+pythonimport cv2
+def is_sharp(crop, threshold=80):
+    gray = cv2.cvtColor(crop, cv2.COLOR_BGR2GRAY)
+    return cv2.Laplacian(gray, cv2.CV_64F).var() > threshold
+
+High variance = sharp, clear drone → classify
+Low variance = blurry, out of focus → "size N/A"
+
+3. Combine all three (recommended)
+python# Gate conditions — ALL must pass to attempt classification
+bbox_area  = (x2-x1) * (y2-y1)
+yolo_conf  = conf
+crop_sharp = laplacian_variance(crop)
+
+if bbox_area  < 1600:   → "drone (size N/A)"  # too small in frame
+if yolo_conf  < 0.55:   → "drone (size N/A)"  # YOLO not confident
+if crop_sharp < 80:     → "drone (size N/A)"  # crop is blurry
+→ Stage 2 classification
+This is what your diagram is really describing when it says "clearly visible" — not just area, but a quality gate on the actual crop.
+
+My recommendation
+Use confidence + sharpness, drop area as the sole gate:
+GateCatchesyolo_conf >= 0.55Weak/uncertain detectionsbbox_area >= 1600Drone too far/tiny to distinguish tierslaplacian_var >= 80Blurry crops that would fool Stage 2
+All three together = "drone is clearly visible and Stage 2 will get a useful input."
